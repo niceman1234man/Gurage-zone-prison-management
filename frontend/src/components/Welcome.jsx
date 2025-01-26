@@ -45,8 +45,8 @@ function Welcome() {
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="text-5xl my-20 text-gray-950">{label.welcome}</h1>
           <p className="text-3xl text-gray-900">{label.motive}</p>
-          <button className="bg-red-500 text-white py-2 px-4 rounded mt-4 text-xl"><Link to='/login'> {label.signin2}</Link>
-           
+          <button className="bg-red-500 text-white py-2 px-4 rounded mt-4 text-xl">
+            <Link to="/login"> {label.signin2}</Link>
           </button>
         </div>
       </div>
