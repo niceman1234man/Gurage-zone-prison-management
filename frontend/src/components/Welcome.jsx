@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Make sure you're using 'react-router-dom'
+import { Link } from "react-router-dom"; 
 
 function Welcome() {
   const amharicLabel = {
