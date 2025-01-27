@@ -12,7 +12,7 @@ function Password({ placeholder, value, handleChange }) {
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
-        className="p-3 border w-full m-2"
+        className="px-3 py-2 border w-full m-2 rounded"
         required
       />
       <span
