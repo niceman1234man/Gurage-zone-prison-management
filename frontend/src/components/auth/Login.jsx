@@ -16,7 +16,7 @@ function Login() {
     email: "Email",
     password: "Password",
     login: "Login",
-    createAccount: "Don't have an account? Signup",
+    createAccount: "Don't have an account? ",
   };
 
   const initialUser = {
@@ -38,8 +38,9 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto w-[50%] border shadow mt-8 pb-8">
-      <h1 className="text-4xl p-2 mt-8">{label.h1}</h1>
+    <div className="bg-gray-500 w-screen h-screen relative ">
+    <div className="flex flex-col items-center justify-center mx-auto w-[30%] border shadow-lg mt-8 pb-3 absolute left-[30%] top-[20%] bg-white rounded">
+      <h1 className="text-2xl p-1 mt-8 font-bold">{label.h1}</h1>
       <form
         className="flex flex-col w-full mx-auto justify-center items-center"
         onSubmit={handleSubmit}
@@ -50,7 +51,7 @@ function Login() {
           placeholder={label.email}
           value={user.email}
           onChange={handleChange}
-          className="p-3 border w-[70%] m-2"
+          className="px-3 py-2 border w-[70%] m-2 rounded"
           required
         />
 
@@ -59,10 +60,10 @@ function Login() {
           value={user.password}
           handleChange={handleChange}
         />
-
+      
         <button
           type="submit"
-          className={`p-2 ${user.email && user.password ? 'bg-blue-500' : 'bg-gray-300 cursor-not-allowed'} m-2 w-[70%] text-white text-2xl`}
+          className={`py-1.5 ${user.email && user.password ? 'bg-blue-500' : 'bg-gray-300 cursor-not-allowed'} m-2 w-[30%] text-white text-2xl rounded  `}
           disabled={!user.email || !user.password}
         >
           {label.login}
@@ -70,10 +71,12 @@ function Login() {
       </form>
       <button
         onClick={() => navigate("/signup")}
-        className="text-2xl text-purple-500"
+        className="text-xl text-gray-950"
       >
         {label.createAccount}
+        <span className=" text-purple-600">Signup</span>
       </button>
+    </div>
     </div>
   );
 }
