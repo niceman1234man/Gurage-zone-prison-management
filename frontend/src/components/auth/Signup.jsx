@@ -21,7 +21,7 @@ function Signup() {
     password: "New Password",
     confirmPassword: "Confirm Password",
     button: "Create",
-    login: "Already have an account? Login",
+    login: "Already have an account? ",
   };
 
   const initialUser = {
@@ -53,8 +53,9 @@ function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto w-[50%] border mt-8 pb-8 shadow">
-      <h1 className="text-4xl p-2 mt-8">{label.h1}</h1>
+    <div className="bg-gray-500 w-screen h-screen relative ">
+    <div className="flex flex-col items-center justify-center mx-auto w-[30%] border mt-8 pb-8 bg-white absolute left-[30%] top-[10%] rounded shadow-lg">
+      <h1 className="text-2xl p-2 mt-8 font-bold">{label.h1}</h1>
       <form
         className="flex flex-col w-full mx-auto justify-center items-center"
         onSubmit={handleUser}
@@ -63,7 +64,7 @@ function Signup() {
           type="text"
           name="fullname"
           placeholder={label.fullname}
-          className="p-2 border w-[70%] m-2"
+          className="p-2 border w-[70%] m-2 rounded"
           value={user.fullname}
           onChange={handleChange}
         />
@@ -71,7 +72,7 @@ function Signup() {
           type="email"
           name="email"
           placeholder={label.email}
-          className="p-2 border w-[70%] m-2"
+          className="p-2 border w-[70%] m-2 rounded"
           value={user.email}
           onChange={handleChange}
         />
@@ -84,13 +85,13 @@ function Signup() {
           type="password"
           name="confirmPassword"
           placeholder={label.confirmPassword}
-          className="p-2 border w-[70%]"
+          className="p-2 border w-[70%] rounded"
           value={user.confirmPassword}
           onChange={handleChange}
         />
         <button
           type="submit"
-          className={`p-2 ${user.fullname && user.email && user.password?  'bg-blue-500':'bg-gray-300 cursor-not-allowed' } m-2 w-[70%] text-white text-2xl` }
+          className={`p-2 ${user.fullname && user.email && user.password?  'bg-blue-500':'bg-gray-300 cursor-not-allowed' } m-2 w-[30%] text-white text-xl font-semibold rounded` }
           disabled={!user.fullname || !user.email || !user.password}
         >
           {label.button}
@@ -98,11 +99,14 @@ function Signup() {
       </form>
       <button
         onClick={() => navigate("/login")}
-        className={`text-2xl`}
+        className={`text-xl`}
+        
       
       >
         {label.login}
+        <span className=" text-purple-600">Login</span>
       </button>
+    </div>
     </div>
   );
 }
