@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 import Password from "../Password";
 
 function Login() {
@@ -44,26 +46,38 @@ function Login() {
       <form
         className="flex flex-col w-full mx-auto justify-center items-center"
         onSubmit={handleSubmit}
-      >
-        <input
+      >  
+      <div className=" flex justify-center items-center w-[80%] m-2 ">
+      <input
           type="email"
           name="email"
           placeholder={label.email}
           value={user.email}
           onChange={handleChange}
-          className="px-3 py-2 border w-[70%] m-2 rounded"
+          className="px-3 py-2 border w-[90%] m-2 mr-0 "
           required
         />
-
-        <Password
+        <p className="border p-3 ml-0"> <FaUser/></p>
+       
+      </div>
+        
+       <div className=" flex justify-center items-center w-[80%] m-2">
+       <Password
           placeholder={label.password}
           value={user.password}
           handleChange={handleChange}
+        
         />
+        <p className="border p-3 ml-0">
+        <FaLock />
+        </p>
+        
+       </div>
+        
       
         <button
           type="submit"
-          className={`py-1.5 ${user.email && user.password ? 'bg-blue-500' : 'bg-gray-300 cursor-not-allowed'} m-2 w-[30%] text-white text-2xl rounded  `}
+          className={`py-1.5 px-2 ${user.email && user.password ? 'bg-blue-500' : 'bg-gray-300 cursor-not-allowed'} m-2 w-[30%] text-white text-xl rounded  `}
           disabled={!user.email || !user.password}
         >
           {label.login}
