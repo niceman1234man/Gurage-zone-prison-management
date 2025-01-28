@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../auth/login.jpg";
 import Password from "../Password";
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 
 function Signup() {
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ function Signup() {
   const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
-    setShowButton((!user.fullname && !user.email && !user.password));
+    setShowButton(!user.fullname && !user.email && !user.password);
   }, [user]);
 
   const handleChange = (e) => {
@@ -54,59 +56,75 @@ function Signup() {
 
   return (
     <div className="bg-gray-500 w-screen h-screen relative ">
-    <div className="flex flex-col items-center justify-center mx-auto w-[30%] border mt-8 pb-8 bg-white absolute left-[30%] top-[10%] rounded shadow-lg">
-      <h1 className="text-2xl p-2 mt-8 font-bold">{label.h1}</h1>
-      <form
-        className="flex flex-col w-full mx-auto justify-center items-center"
-        onSubmit={handleUser}
-      >
-        <input
-          type="text"
-          name="fullname"
-          placeholder={label.fullname}
-          className="p-2 border w-[70%] m-2 rounded"
-          value={user.fullname}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder={label.email}
-          className="p-2 border w-[70%] m-2 rounded"
-          value={user.email}
-          onChange={handleChange}
-        />
-        <Password
-          placeholder={label.password}
-          value={user.password}
-          handleChange={handleChange}
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder={label.confirmPassword}
-          className="p-2 border w-[70%] rounded"
-          value={user.confirmPassword}
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          className={`p-2 ${user.fullname && user.email && user.password?  'bg-blue-500':'bg-gray-300 cursor-not-allowed' } m-2 w-[30%] text-white text-xl font-semibold rounded` }
-          disabled={!user.fullname || !user.email || !user.password}
+      <div className="flex flex-col items-center justify-center mx-auto w-[30%] border mt-8 pb-8 bg-white absolute left-[30%] top-[10%] rounded shadow-lg">
+        <h1 className="text-2xl p-2 mt-8 font-bold">{label.h1}</h1>
+        <form
+          className="flex flex-col w-full mx-auto justify-center items-center"
+          onSubmit={handleUser}
         >
-          {label.button}
+          <div className=" flex justify-center items-center w-[80%] m-2 ">
+            <input
+              type="text"
+              name="fullname"
+              placeholder={label.fullname}
+             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              value={user.fullname}
+              onChange={handleChange}
+            />
+             <p className="border p-3 ml-0 mb-2"> <FaUser/></p>
+          </div>
+          <div className=" flex justify-center items-center w-[80%] m-2 ">
+            <input
+              type="email"
+              name="email"
+              placeholder={label.email}
+             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              value={user.email}
+              onChange={handleChange}
+            />
+             <p className="border p-3 ml-0 mb-2"> <FaUser/></p>
+          </div>
+          <div className=" flex justify-center items-center w-[80%] mb-2 ">
+            <Password
+              placeholder={label.password}
+              value={user.password}
+              handleChange={handleChange}
+            />
+             <p className="border p-3 ml-0">
+                    <FaLock />
+                    </p>
+          </div>
+          <div className=" flex justify-center items-center w-[80%] m-2 ">
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder={label.confirmPassword}
+            className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              value={user.confirmPassword}
+              onChange={handleChange}
+            />
+             <p className="border p-3 mb-2 ml-0">
+                    <FaLock />
+                    </p>
+          </div>
+
+          <button
+            type="submit"
+            className={`py-1.5 px-2 ${
+              user.fullname && user.email && user.password
+                ? "bg-blue-500"
+                : "bg-gray-300 cursor-not-allowed"
+            } m-2 w-[30%] text-white text-xl font-semibold rounded`}
+            disabled={!user.fullname || !user.email || !user.password}
+          >
+            {label.button}
+          </button>
+        </form>
+        <button onClick={() => navigate("/login")} className={`text-xl`}>
+          {label.login}
+          <span className=" text-purple-600">Login</span>
         </button>
-      </form>
-      <button
-        onClick={() => navigate("/login")}
-        className={`text-xl`}
-        
-      
-      >
-        {label.login}
-        <span className=" text-purple-600">Login</span>
-      </button>
-    </div>
+      </div>
     </div>
   );
 }
