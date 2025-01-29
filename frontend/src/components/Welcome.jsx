@@ -31,16 +31,21 @@ function Welcome() {
   };
 
   return (
-    <div className="container flex mx-auto mt-6">
-      <div>
-        <div className="float-right flex mx-auto justify-center items-center">
-          <select className="h-10 bg-slate-500" onChange={handleLanguage}>
+    <div className=" ">
+      <div className="h-screen">
+        <div className="flex mx-auto justify-between items-center bg-green-300 px-5 py-2">
+        <h1 className="font-bold text-lg">Prison Management System</h1>
+        <div className="flex space-x-6 items-center">
+         <p>Visitor Page</p>
+          <select className="h-6 bg-slate-500 rounded" onChange={handleLanguage}>
             <option value="english">English</option>
             <option value="amharic">አማርኛ</option>
           </select>
-          <button className="text-xl text-rose-600 p-7 bg-slate-500 h-6 rounded-lg ml-4 flex items-center justify-center">
+          
             <Link to="/login">{label.login}</Link>
-          </button>
+        </div>
+       
+         
         </div>
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="text-5xl my-20 text-gray-950">{label.welcome}</h1>
@@ -48,6 +53,9 @@ function Welcome() {
           <button className="bg-red-500 text-white py-2 px-4 rounded mt-4 text-xl">
             <Link to="/login"> {label.signin2}</Link>
           </button>
+        </div>
+        <div className="bg-green-300 flex py-1 font-semibold justify-center mt-52">
+          <p>&copy; {new Date().getFullYear()} All rights reserverd</p>
         </div>
       </div>
     </div>
