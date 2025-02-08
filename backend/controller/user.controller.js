@@ -25,8 +25,6 @@ return res.status(201).json({error:false,accessToken,message:"user registered su
 }
 export const login=async(req,res)=>{
     try {
-        
-   
     const {email,password}=req.body;
     if(!email||!password){
         return res.status(400).json("please all fields")
