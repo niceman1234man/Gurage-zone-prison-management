@@ -3,7 +3,6 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 function Password({ placeholder, value, handleChange }) {
   const [showPassword, setShowPassword] = useState(false);
-
   return (
     <div className="relative w-[90%] mx-auto flex justify-center mr-0">
       <input
