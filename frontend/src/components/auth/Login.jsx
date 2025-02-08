@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import Password from "../Password";
+import { Link } from "react-router";
+import axiosInstance from "../../../utils/axiosInstance";
 
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ function Login() {
     email: "Email",
     password: "Password",
     login: "Login",
-    createAccount: "Don't have an account? ",
+    createAccount: "If you are Visitor ",
   };
 
   const initialUser = {
@@ -32,11 +34,28 @@ function Login() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("User logged in:", user);
-    // Verify user credentials and navigate
+          
+try {
+  const response=await axiosInstance.post('/user/login',{
+    email:user.email,
+    password:user.password
+  });
+  if(response.data && response.data.accessToken){
+    localStorage.setItem("token",response.data.accessToken);
     navigate("/dashboard");
+  }
+} catch (error) {
+  if(error.response &&error.response.data && error.response.data.message){
+    console.log(error.response.data.message);
+  }else{
+    console.log("An unexpected error occurred. Pleas try again.");
+  }
+}
+
+    // Verify user credentials and navigate
+   
   };
 
   return (
@@ -82,13 +101,14 @@ function Login() {
         >
           {label.login}
         </button>
+        <Link to='/foregot-password' className="text-lg font-semibold py-1">Forgot Passowrd</Link>
       </form>
       <button
-        onClick={() => navigate("/signup")}
+        onClick={() => navigate("/register")}
         className="text-xl text-gray-950"
       >
         {label.createAccount}
-        <span className=" text-purple-600">Signup</span>
+        <span className=" text-purple-600">Register</span>
       </button>
     </div>
     </div>

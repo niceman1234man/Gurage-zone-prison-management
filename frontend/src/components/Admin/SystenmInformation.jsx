@@ -1,29 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function SystenmInformation() {
+  const initialInfo={
+    systemName:'',
+    shortName:'',
+    logo:'',
+    cover:''
+
+  }
+  const [systemInformation,setSystemInformation]=useState(initialInfo);
+  const changeHandler=(e)=>{
+    setSystemInformation({...systemInformation,[e.target.name]:e.target.value});
+  }
+  const submitHandler=(e)=>{
+    e.preventDefault();
+    console.log(systemInformation)
+  }
   return (
     <div>
         <h3 className="border-b border-t-4 border-t-gray-900 font-semibold text-lg text-center p-4">
             System Information
           </h3>
-          <form className="flex flex-col space-y-3 p-2">
+          <form className="flex flex-col space-y-3 p-2" onSubmit={submitHandler}>
             <div className="flex flex-col">
                 <label>
                     System Name
                 </label>
-                <input type="text" className="border py-2 mt-2" />
+                <input type="text" className="border py-2 mt-2" name='systemName' onChange={changeHandler}/>
             </div>
             <div className="flex flex-col">
                 <label >System Short Name</label>
-                <input type="text"  className="border py-2 mt-2"  />
+                <input type="text"  className="border py-2 mt-2"  name='shortName' onChange={changeHandler}/>
             </div>
             <div className="flex flex-col">
                 <label >System Logo</label>
-                <input type="file"  className="border py-2 mt-2" />
+                <input type="file"  className="border py-2 mt-2" name='logo' onChange={changeHandler}/>
             </div>
             <div className="flex flex-col">
                 <label >Website Cover</label>
-                <input type="file"  className="border py-2 mt-2" />
+                <input type="file"  className="border py-2 mt-2" name='cover' onChange={changeHandler}/>
                 <div className="w-full h-64 p-2">
                     <img src="" alt="" />
                 </div>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import image from "../auth/login.jpg";
 import Password from "../Password";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
 
 function Signup() {
   const navigate = useNavigate();
@@ -44,13 +45,38 @@ function Signup() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleUser = (e) => {
+  const handleUser = async(e) => {
     e.preventDefault();
     if (!user.email || !user.fullname || !user.password) {
       alert("All fields are required!");
       return;
     }
-    navigate("/list");
+    try {
+      const response = await axiosInstance.post('/user/create-account', {
+          fullName: name,
+          email,
+          role:"visitor",
+          password,
+      });
+
+      console.log(response); // Log response data for debugging
+
+      if (response) {
+          localStorage.setItem("token", response.data.accessToken);
+          toast.success("User Registred Successfully !");
+          navigate('/login');
+      }
+  } catch (error) {
+      console.error("Error during signup:", error); // Log error details
+      if (error.response && error.response.data && error.response.data.message) {
+          setError(error.response.data.message);
+      } else {
+          setError("An unexpected error occurred. Please try again.");
+      }
+  } finally {
+      setLoading(false); // Reset loading state
+  }
+    
     setUser(initialUser);
   };
 

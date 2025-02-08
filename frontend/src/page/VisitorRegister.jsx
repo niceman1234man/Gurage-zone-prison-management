@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Password from "../components/Password";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
+import axiosInstance from "../../utils/axiosInstance";
 
 function VisitorRegister() {
   const navigate = useNavigate();
@@ -43,13 +46,36 @@ function VisitorRegister() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleUser = (e) => {
+  const handleUser = async(e) => {
     e.preventDefault();
     if (!user.email || !user.fullname || !user.password) {
       alert("All fields are required!");
       return;
     }
-    navigate("/list");
+    try {
+          const response = await axiosInstance.post('/user/create-account', {
+              fullName: user.fullname,
+              email:user.email,
+              role:"visitor",
+              password:user.password,
+          });
+    
+          console.log(response); // Log response data for debugging
+    
+          if (response) {
+              localStorage.setItem("token", response.data.accessToken);
+              toast.success("User Registred Successfully !");
+              navigate('/login');
+          }
+      } catch (error) {
+          console.error("Error during signup:", error); // Log error details
+          if (error.response && error.response.data && error.response.data.message) {
+              console.log(first)(error.response.data.message);
+          } else {
+              console.log(first)("An unexpected error occurred. Please try again.");
+          }
+      } 
+   
     setUser(initialUser);
   };
 

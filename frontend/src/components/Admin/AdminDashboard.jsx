@@ -3,7 +3,7 @@ import React from 'react';
 function AdminDashboard() {
   return (
     <div>
-      <h1 className="border-b p-5 text-2xl font-bold">Welcome, Admin!</h1>
+      <h1 className="border-b p-5 text-2xl font-bold" >Welcome, Admin!</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <div className="border p-2 font-semibold">
           <h3>Active Users</h3>

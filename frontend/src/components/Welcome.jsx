@@ -36,7 +36,7 @@ function Welcome() {
         <div className="flex mx-auto justify-between items-center bg-green-300 px-5 py-2">
         <h1 className="font-bold text-lg">Prison Management System</h1>
         <div className="flex space-x-6 items-center">
-         <p>Visitor Page</p>
+         <Link to='/visitor'>Visitor Page</Link>
           <select className="h-6 bg-slate-500 rounded" onChange={handleLanguage}>
             <option value="english">English</option>
             <option value="amharic">አማርኛ</option>

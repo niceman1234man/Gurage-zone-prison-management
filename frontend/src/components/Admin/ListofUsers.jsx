@@ -3,13 +3,12 @@ import React from 'react'
 function ListofUsers() {
   return (
     <div>
-         <div className="border-b  flex justify-between p-4">
-            <h4 className="font-semibold">List of Users</h4>
-            <button className="bg-blue-600 text-white px-3 py-2 rounded font-semibold">
+         <div className="border-b  flex  p-4">
+            <h4 className="font-semibold mr-8">List of Users</h4>
+            <button className="bg-blue-600 text-white ml-8 px-3 py-2 rounded font-semibold">
               + Create New
             </button>
           </div>
-
           <input
             type="text"
             name=""

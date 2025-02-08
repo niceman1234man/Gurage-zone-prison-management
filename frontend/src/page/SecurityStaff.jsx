@@ -6,10 +6,11 @@ import { FaAngleUp } from "react-icons/fa6";
 import { FiFileText } from "react-icons/fi";
 import { FaUserCheck, FaUserPlus, FaUsersCog, FaUserSlash } from "react-icons/fa";
 import ListofUsers from "../components/Admin/ListofUsers";
-import CreateNewUser from "../components/Admin/CreateNewUser";
 import AdminDashboard from "../components/Admin/AdminDashboard";
 import SystenmInformation from "../components/Admin/SystenmInformation";
 import MyAccount from "../components/Admin/MyAccount";
+import Issue from "../components/security/Issue";
+import UpdateProfile from "../components/security/UpdateProfile";
 import NewInmate from "../components/Visitor/security/NewInmate";
 import { useNavigate } from "react-router";
 function SecurityStaff() {
@@ -24,8 +25,12 @@ function SecurityStaff() {
         return <AdminDashboard />;
       case "Create New":
         return <NewInmate />;
+        case "issue":
+            return <Issue />;
       case "All Users":
         return <ListofUsers />;
+        case "My Profile":
+        return <UpdateProfile />;
       case "System Information":
         return <SystenmInformation />;
       case "myAccount":
@@ -55,7 +60,7 @@ function SecurityStaff() {
           <li onClick={() => setActiveComponent("My Profile")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "My Profile" ? 'bg-green-400' : ''}`}>
             <RxDashboard className="mr-2" size={20} /> Update Profile
           </li>
-          <li onClick={() => setActiveComponent("Create New")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "Create New" ? 'bg-green-400' : ''}`}>
+          <li onClick={() => setActiveComponent("issue")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "issue" ? 'bg-green-400' : ''}`}>
             <FaUserPlus className="mr-2" size={20} /> Manage Issue
           </li>
           </div>
