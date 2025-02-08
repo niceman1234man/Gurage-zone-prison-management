@@ -44,7 +44,7 @@ try {
   });
   if(response.data && response.data.accessToken){
     localStorage.setItem("token",response.data.accessToken);
-    navigate("/dashboard");
+    navigate("/visitor-dash");
   }
 } catch (error) {
   if(error.response &&error.response.data && error.response.data.message){

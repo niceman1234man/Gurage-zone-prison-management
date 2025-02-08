@@ -5,17 +5,20 @@ import { FaUserCheck, FaUserPlus, FaUsersCog, FaUserSlash } from "react-icons/fa
 import MyAccount from "../components/Admin/MyAccount";
 import { useNavigate } from "react-router";
 import VisitorInformation from "../components/Visitor/VisitorInformation";
-import AdminDashboard from "../components/Admin/AdminDashboard";
+import VisitorsDashboard from "../components/Visitor/VisitorsDashboard";
 import ListofUsers from "../components/Admin/ListofUsers";
-
 function VisitorDashboard() {
   const navigate = useNavigate();
   const [activeComponent, setActiveComponent] = useState("Dashboard");
 
+  const onLogout = () => {
+    localStorage.clear();
+    navigate("/login"); // Fixed the typo here
+  };
   const renderComponent = () => {
     switch (activeComponent) {
       case "Dashboard":
-        return <AdminDashboard />;
+        return <VisitorsDashboard />;
       case "Create New":
         return <VisitorInformation />;
       case "My Inmates":
@@ -25,7 +28,7 @@ function VisitorDashboard() {
       case "myAccount":
         return <MyAccount />;
       case "logout":
-        navigate('/login');
+        onLogout();
       default:
         return <AdminDashboard />;
     }
