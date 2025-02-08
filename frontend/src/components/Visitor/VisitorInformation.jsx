@@ -5,40 +5,35 @@ import { FaUsers } from "react-icons/fa6";
 import { LuPhoneCall } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 
-function VisitorInformation({setActiveComponent}) {
+function VisitorInformation({ setActiveComponent }) {
   const navigate = useNavigate();
-  const amharicLabel = {
-    h1: "አዲስ መግቢያ ይፍጠሩ",
-    fullname: "ሙሉ ስም",
-    email: "ኢሜይል",
-    password: "አዲስ ይለፍ ቃል",
-    confirmPassword: "ይለፍ ቃል ያረጋግጡ",
-    button: "ይፍጠሩ",
-    login: "ይግቡ",
-  };
+
   const englishLabel = {
     h1: "Fill Information",
     fullname: "Visitor's Full Name",
     inmate: "Inmate",
-    password: "New Password",
-    confirmPassword: "Confirm Password",
+    relation: "Relation",
+    number: "Phone Number",
+    date: "Date",
     button: "Save",
-    login: "Already have an account? ",
   };
 
   const initialUser = {
-    inmate:"",
+    inmate: "",
     fullname: "",
     relation: "",
     number: "",
-    date:''
+    date: "",
   };
+
   const [user, setUser] = useState(initialUser);
   const [label, setLabel] = useState(englishLabel);
   const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
-    setShowButton(!user.fullname && !user.email && !user.password);
+    setShowButton(
+      !user.fullname || !user.inmate || !user.relation || !user.number || !user.date
+    );
   }, [user]);
 
   const handleChange = (e) => {
@@ -47,99 +42,107 @@ function VisitorInformation({setActiveComponent}) {
 
   const handleUser = (e) => {
     e.preventDefault();
-    if (!user.email || !user.fullname || !user.password) {
+    if (!user.fullname || !user.inmate || !user.relation || !user.number || !user.date) {
       alert("All fields are required!");
       return;
     }
     navigate("/list");
     setUser(initialUser);
   };
-  const onhanleEvent=()=>{
+
+  const onHandleEvent = () => {
     setActiveComponent("Dashboard");
-  }
+  };
+
   return (
-    <div className="bg-gray-500 w-screen h-screen relative ">
-      <div className="flex flex-col items-center justify-center mx-auto w-[30%] border mt-8 pb-8 bg-white absolute left-[30%] top-[10%] rounded shadow-lg">
-        <h1 className="text-2xl p-2 mt-8 font-bold">{label.h1}</h1>
-        <form
-          className="flex flex-col w-full mx-auto justify-center items-center"
-          onSubmit={handleUser}
-        >
-           <div className=" flex justify-center items-center w-[80%] m-2 ">
+    <div className="bg-gray-500 w-screen h-screen flex items-center justify-center">
+      <div className="w-[30%] border bg-white rounded shadow-lg p-8">
+        <h1 className="text-2xl font-bold text-center">{label.h1}</h1>
+        <form className="flex flex-col mt-4" onSubmit={handleUser}>
+          {/* Inmate Name */}
+          <div className="flex items-center border p-2 mb-2">
             <input
               type="text"
               name="inmate"
               placeholder={label.inmate}
-             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              className="flex-1 px-3 py-1 outline-none"
               value={user.inmate}
               onChange={handleChange}
             />
-             <p className="border p-3 ml-0 mb-2"> <FaUser/></p>
+            <FaUser className="text-gray-500" />
           </div>
-          <div className=" flex justify-center items-center w-[80%] m-2 ">
+
+          {/* Visitor's Full Name */}
+          <div className="flex items-center border p-2 mb-2">
             <input
               type="text"
               name="fullname"
               placeholder={label.fullname}
-             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              className="flex-1 px-3 py-1 outline-none"
               value={user.fullname}
               onChange={handleChange}
             />
-             <p className="border p-3 ml-0 mb-2"> <FaUser/></p>
+            <FaUser className="text-gray-500" />
           </div>
-          
-          <div className=" flex justify-center items-center w-[80%] m-2 ">
+
+          {/* Relation */}
+          <div className="flex items-center border p-2 mb-2">
             <input
               type="text"
               name="relation"
-              placeholder="Relation"
-             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              placeholder={label.relation}
+              className="flex-1 px-3 py-1 outline-none"
               value={user.relation}
               onChange={handleChange}
             />
-             <p className="border p-3 ml-0 mb-2"> <FaUsers/></p>
+            <FaUsers className="text-gray-500" />
           </div>
-          <div className=" flex justify-center items-center w-[80%] m-2 ">
+
+          {/* Phone Number */}
+          <div className="flex items-center border p-2 mb-2">
             <input
               type="text"
               name="number"
-              placeholder="Phone Number"
-             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              placeholder={label.number}
+              className="flex-1 px-3 py-1 outline-none"
               value={user.number}
               onChange={handleChange}
             />
-             <p className="border p-3 ml-0 mb-2"> <LuPhoneCall/></p>
+            <LuPhoneCall className="text-gray-500" />
           </div>
-          <div className=" flex justify-center items-center w-[80%] m-2 ">
+
+          {/* Date */}
+          <div className="flex items-center border p-2 mb-4">
             <input
               type="date"
               name="date"
-              placeholder="Date"
-             className="px-3 py-2 border w-[90%] mb-2 mr-0 "
+              placeholder={label.date}
+              className="flex-1 px-3 py-1 outline-none"
               value={user.date}
               onChange={handleChange}
             />
-             <p className="border p-3 ml-0 mb-2"> <SlCalender/></p>
+            <SlCalender className="text-gray-500" />
           </div>
-         <div className="flex">
-          <button
-            type="submit"
-            className={`py-1.5 px-2 ${
-              user.fullname && user.inmate && user.number&&user.relation
-                ? "bg-blue-500 cursor-pointer"
-                : "bg-gray-300 cursor-not-allowed"
-            } m-2 w-[50%] text-white text-xl font-semibold rounded mr-4`}
-            disabled={!user.fullname || !user.email || !user.password}
-          >
-            {label.button}
-          </button>
-        <button onClick={onhanleEvent}>
-        <Link to="/visitor-dash" className=" bg-red-600 text-white px-3 py-2 rounded">
-          
-          Cancel
-        </Link>
-        </button>
-        </div>
+
+          {/* Buttons */}
+          <div className="flex justify-between">
+            <button
+              type="submit"
+              className={`py-2 px-4 text-white font-semibold rounded ${
+                showButton ? "bg-gray-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              disabled={showButton}
+            >
+              {label.button}
+            </button>
+
+            <Link
+            onClick={onHandleEvent}
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            >
+              Cancel
+            </Link>
+          </div>
         </form>
       </div>
     </div>
