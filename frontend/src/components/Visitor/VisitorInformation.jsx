@@ -5,7 +5,7 @@ import { FaUsers } from "react-icons/fa6";
 import { LuPhoneCall } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 
-function VisitorInformation() {
+function VisitorInformation({setActiveComponent}) {
   const navigate = useNavigate();
   const amharicLabel = {
     h1: "አዲስ መግቢያ ይፍጠሩ",
@@ -54,7 +54,9 @@ function VisitorInformation() {
     navigate("/list");
     setUser(initialUser);
   };
-
+  const onhanleEvent=()=>{
+    setActiveComponent("Dashboard");
+  }
   return (
     <div className="bg-gray-500 w-screen h-screen relative ">
       <div className="flex flex-col items-center justify-center mx-auto w-[30%] border mt-8 pb-8 bg-white absolute left-[30%] top-[10%] rounded shadow-lg">
@@ -131,7 +133,7 @@ function VisitorInformation() {
           >
             {label.button}
           </button>
-        <button>
+        <button onClick={onhanleEvent}>
         <Link to="/visitor-dash" className=" bg-red-600 text-white px-3 py-2 rounded">
           
           Cancel
