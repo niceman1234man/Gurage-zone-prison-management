@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 const userSchema=new mongoose.Schema({
+    visitorId:{
+        type:String ,
+        required:true
+    },
     inmate:{
         type:String ,
         required:true
@@ -20,4 +24,4 @@ const userSchema=new mongoose.Schema({
         required:true
     }
 },{timestamps:true});
-export const User=mongoose.model('Visitor',userSchema);
+export const Visitor=mongoose.model('Visitor',userSchema);
