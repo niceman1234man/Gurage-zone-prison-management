@@ -34,29 +34,50 @@ function Login() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-          
-try {
-  const response=await axiosInstance.post('/user/login',{
-    email:user.email,
-    password:user.password
-  });
-  if(response.data && response.data.accessToken){
-    localStorage.setItem("token",response.data.accessToken);
-    navigate("/visitor-dash");
-  }
-} catch (error) {
-  if(error.response &&error.response.data && error.response.data.message){
-    console.log(error.response.data.message);
-  }else{
-    console.log("An unexpected error occurred. Pleas try again.");
-  }
-}
-
+  
+    try {
+      const response = await axiosInstance.post("/user/login", {
+        email: user.email,
+        password: user.password,
+      });
+  
+      if (response.data && response.data.accessToken) {
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("role", response.data.userInfo.role); // Store user role
+  
+        // Redirect user based on role
+        switch (response.data.userInfo.role) {
+          case "admin":
+            navigate("/admin");
+            break;
+          case "visitor":
+            navigate("/visitor-dash");
+            break;
+          case "police-officer":
+            navigate("/police-officer");
+            break;
+          case "inspector":
+            navigate("/inspector");
+            break;
+          case "security":
+            navigate("/security");
+            break;
+          default:
+            navigate("/login"); // Default redirect if no valid role
+        }
+      }
+    } catch (error) {
+      console.error(
+        error.response?.data?.message || "An unexpected error occurred. Please try again."
+      );
+    }
+  };
+  
     // Verify user credentials and navigate
    
-  };
+  
 
   return (
     <div className="bg-gray-500 w-screen h-screen relative ">
