@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RxDashboard } from "react-icons/rx";
 import { HiUserGroup } from "react-icons/hi";
 import { FaAngleDown } from "react-icons/fa";
-import { FaAngleUp } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa";
 import { FiFileText } from "react-icons/fi";
 import { FaUserCheck, FaUserPlus, FaUsersCog, FaUserSlash } from "react-icons/fa";
 import ListofUsers from "../components/Admin/ListofUsers";
@@ -64,7 +64,7 @@ function SecurityStaff() {
             <FaUserPlus className="mr-2" size={20} /> Manage Issue
           </li>
           </div>
-          <h2 className="text-xl font-semibold flex items-center">Manage Inmate <span className="ml-2">{inmatetoggle?<FaAngleDown onClick={()=>setInmateToggle(!inmatetoggle)}/>:<FaAngleUp onClick={()=>setInmateToggle(!inmatetoggle)}/>}</span></h2>
+          <h2 className="text-xl font-semibold flex items-center">Manage Inmate <span className="ml-2">{inmatetoggle?<FaAngleRight onClick={()=>setInmateToggle(!inmatetoggle)}/>:<FaAngleDown onClick={()=>setInmateToggle(!inmatetoggle)}/>}</span></h2>
           <div className={`${inmatetoggle? 'hidden':''} space-y-6`} > 
           <li onClick={() => setActiveComponent("Create New")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "Create New" ? 'bg-green-400' : ''}`}>
             <FaUserPlus className="mr-2" size={20} /> New Inmate
