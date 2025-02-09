@@ -5,9 +5,11 @@ import { FaLock } from "react-icons/fa";
 import Password from "../Password";
 import { Link } from "react-router";
 import axiosInstance from "../../../utils/axiosInstance";
-
+import { useDispatch } from 'react-redux'
+import { setUser } from "../../redux/userSlice";
 function Login() {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
   const amharicLabel = {
     h1: "መግቢያ",
     email: "ኢሜይል",
@@ -28,10 +30,10 @@ function Login() {
     password: "",
   };
   const [label, setLabel] = useState(englishLabel);
-  const [user, setUser] = useState(initialUser);
+  const [user, setUsers] = useState(initialUser);
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUsers({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -45,7 +47,9 @@ function Login() {
   
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        localStorage.setItem("role", response.data.userInfo.role); // Store user role
+        localStorage.setItem("role", response.data.userInfo.role);
+        
+        dispatch(setUser(response.data.userInfo)); // Store user in Redux
   
         // Redirect user based on role
         switch (response.data.userInfo.role) {
@@ -65,15 +69,14 @@ function Login() {
             navigate("/security");
             break;
           default:
-            navigate("/login"); // Default redirect if no valid role
+            navigate("/login"); // Redirect back to login for unknown roles
         }
       }
     } catch (error) {
-      console.error(
-        error.response?.data?.message || "An unexpected error occurred. Please try again."
-      );
+      console.error(error.response?.data?.message || "Login error, try again.");
     }
   };
+  
   
     // Verify user credentials and navigate
    
