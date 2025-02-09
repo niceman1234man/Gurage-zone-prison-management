@@ -7,8 +7,6 @@ import {
 } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
-
-
 import MyAccount from "../components/Admin/MyAccount";
 import { useNavigate } from "react-router";
 import VisitorInformation from "../components/Visitor/VisitorInformation";
@@ -16,7 +14,11 @@ import VisitorsDashboard from "../components/Visitor/VisitorsDashboard";
 import ListofUsers from "../components/Admin/ListofUsers";
 import ViewSchedule from "../components/Visitor/ViewSchedule";
 import ChangePassword from "../components/ChangePassword";
+import {useSelector } from 'react-redux'
+import { getInitials } from "../components/getNameInitials.js";
 function VisitorDashboard() {
+  const user=useSelector(state=>state.user.user);
+  const initial=getInitials(user.fullName)
   const navigate = useNavigate();
   const [activeComponent, setActiveComponent] = useState("Dashboard");
  const [toggle,setToggle]=useState(true);
@@ -125,9 +127,9 @@ function VisitorDashboard() {
             Prison Management System Visitor
           </h3>
           <div className="flex items-center justify-center">
-            <div className="w-6 h-6 bg-slate-500 rounded-full"></div>
+            <div className="w-6 h-6 bg-slate-500 rounded-full">{initial}</div>
             <p className="ml-3">
-              Visitor{" "}
+              {user.role}
               <select onChange={(e) => setActiveComponent(e.target.value)}>
                 <option value=""></option>
                 <option value="myAccount">My Account</option>
