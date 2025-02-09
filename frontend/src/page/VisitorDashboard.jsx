@@ -6,7 +6,7 @@ import {
   FaUsersCog,FaUser,FaLock
 } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
-import { FaAngleUp } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa";
 
 
 import MyAccount from "../components/Admin/MyAccount";
@@ -80,7 +80,7 @@ function VisitorDashboard() {
           >
             <GrSchedule className="mr-2" size={20} /> View Schedule
           </li>
-          <h3 className="flex items-center">Setting <span className="ml-2">{toggle?<FaAngleDown onClick={()=>setToggle(!toggle)}/>:<FaAngleUp onClick={()=>setToggle(!toggle)}/>}</span></h3>
+          <h3 className="flex items-center">Setting <span className="ml-2">{toggle?<FaAngleRight onClick={()=>setToggle(!toggle)}/>:<FaAngleDown onClick={()=>setToggle(!toggle)}/>}</span></h3>
           <div  className={`${toggle? 'hidden':''} space-y-6`}>
         
             <li
