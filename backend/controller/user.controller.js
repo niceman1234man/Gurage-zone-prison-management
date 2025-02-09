@@ -40,7 +40,7 @@ export const login=async(req,res)=>{
     const accessToken=jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
         expiresIn:"36000m"
     })
-    res.status(200).json({email,accessToken,meaage:"Login Successfully"});
+    res.status(200).json({userInfo,accessToken,mesage:"Login Successfully"});
 } catch (error) {
   console.log(error)      
 }
