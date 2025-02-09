@@ -4,6 +4,7 @@ import { HiUserGroup } from "react-icons/hi";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
 import { FiFileText } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
 import { FaUserCheck, FaUserPlus, FaUsersCog, FaUserSlash } from "react-icons/fa";
 import ListofUsers from "../components/Admin/ListofUsers";
 import AdminDashboard from "../components/Admin/AdminDashboard";
@@ -55,10 +56,10 @@ function SecurityStaff() {
           <li onClick={() => setActiveComponent("Dashboard")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "Dashboard" ? 'bg-green-400' : ''}`}>
             <RxDashboard className="mr-2" size={20} /> Dashboard
           </li>
-          <h2 className="text-xl font-semibold flex items-center">Profile <span className="ml-2">{profiletoggle?<FaAngleDown onClick={()=>setProfileToggle(!profiletoggle)}/>:<FaAngleUp onClick={()=>setProfileToggle(!profiletoggle)}/>}</span></h2>
+          <h2 className="text-xl font-semibold flex items-center">Profile <span className="ml-2">{profiletoggle?<FaAngleRight onClick={()=>setProfileToggle(!profiletoggle)}/>:<FaAngleDown onClick={()=>setProfileToggle(!profiletoggle)}/>}</span></h2>
           <div className={`${profiletoggle? 'hidden':''} space-y-6`} > 
           <li onClick={() => setActiveComponent("My Profile")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "My Profile" ? 'bg-green-400' : ''}`}>
-            <RxDashboard className="mr-2" size={20} /> Update Profile
+            <FaUser className="mr-2" size={20} /> Update Profile
           </li>
           <li onClick={() => setActiveComponent("issue")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "issue" ? 'bg-green-400' : ''}`}>
             <FaUserPlus className="mr-2" size={20} /> Manage Issue
