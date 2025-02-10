@@ -33,8 +33,6 @@ export const visitorInformation = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-// Update Visitor Information
 export const updateVisitor = async (req, res) => {
   try {
     const { id } = req.params;
