@@ -21,7 +21,6 @@ const accessToken=jwt.sign({newUser},process.env.ACCESS_TOKEN_SECRET,{
     expiresIn:"36000m"
 })
 return res.status(201).json({error:false,accessToken,message:"user registered successfully"})
-
 }
 export const login=async(req,res)=>{
     try {
