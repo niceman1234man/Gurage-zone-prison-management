@@ -55,9 +55,7 @@ function Inspector() {
           <li onClick={() => setActiveComponent("Create Request")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "Create Request" ? 'bg-green-400' : ''}`}>
             <FaUserCheck className="mr-2" size={20} /> Create Request
           </li>
-          {/* <li onClick={() => setActiveComponent("Blocked Users")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "Blocked Users" ? 'bg-green-400' : ''}`}>
-            <FaUserSlash className="mr-2" size={20} /> Blocked Users
-          </li> */}
+          
           <li onClick={() => setActiveComponent("System Information")} className={`hover:bg-gray-300 cursor-pointer flex items-center border-b border-white ${activeComponent === "System Information" ? 'bg-green-400' : ''}`}>
             <FaUsersCog className="mr-2" size={20} /> System Information
           </li>
